@@ -73,7 +73,7 @@ def solve_50a16a69():
     x4 = index(dt, x3)
     x5 = double(x2)
     x6 = canvas(x4, x5)
-    x7 = paint(x6, x1)
+    x7 = paint(x6, x1) 
     x8 = objects(x7, F, F, T)
     x9 = first(x8)
     x10 = shift(x9, LEFT)
@@ -544,4 +544,35 @@ def solve_0e671a1a():
     x14 = combine(x12, x13)
     x15 = underfill(dt, 5 ,x11)
     O = underfill(x15, 5, x14)
+    return O
+
+def solve_4aab4007():
+    input_file = '../data/evaluation/4aab4007.json'
+    with open(input_file, 'r') as f:
+        data=json.load(f)
+    test_inputs = [item['input'] for item in data.get('test')][0]
+    dt = tuple(map(tuple, test_inputs))
+    sp = astuple(height(dt) - 3, width(dt) - 3)
+    ndt = crop(dt, (3,3), sp)
+    x1 = asindices(ndt)
+    x2 = dmirror(ndt)
+    x3 = invert(9)
+    x4 = papply(pair, ndt, x2)
+    x5 = lbind(apply, maximum)
+    x6 = apply(x5, x4)
+    x7 = ofcolor(x6, 0)
+    x8 = difference(x1, x7)
+    x9 = toobject(x8, x6)
+    x10 = interval(x3, 9, 1)
+    x11 = interval(9, x3, -1)
+    x12 = pair(x10, x11)
+    x13 = lbind(shift, x9)
+    x14 = mapply(x13, x12)
+    x15 = paint(x6, x14)
+    x16 = asobject(x15)
+    x17 = shift(x16, (3, 3))
+    x18 = outbox(x17)
+    x19 = canvas(1, shape(dt))
+    x20 = fill(x19, 4, x18)
+    O = paint(x20, x17)
     return O
