@@ -576,3 +576,16 @@ def solve_4aab4007():
     x20 = fill(x19, 4, x18)
     O = paint(x20, x17)
     return O
+
+def solve_3194b014():
+    input_file = '../data/evaluation/3194b014.json'
+    with open(input_file, 'r') as f:
+        data=json.load(f)
+    test_inputs = [item['input'] for item in data.get('test')][0]
+    dt = tuple(map(tuple, test_inputs))
+    x1 = objects(dt, T, F, T)
+    x2 = order(x1, size)
+    x3 = last(x2)
+    x4 = color(x3)
+    O = canvas(x4, (3, 3))
+    return O
