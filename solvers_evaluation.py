@@ -553,7 +553,7 @@ def solve_4aab4007():
     test_inputs = [item['input'] for item in data.get('test')][0]
     dt = tuple(map(tuple, test_inputs))
     sp = astuple(height(dt) - 3, width(dt) - 3)
-    ndt = crop(dt, (3,3), sp)
+    ndt = crop(dt, (3, 3), sp)
     x1 = asindices(ndt)
     x2 = dmirror(ndt)
     x3 = invert(9)
@@ -589,3 +589,33 @@ def solve_3194b014():
     x4 = color(x3)
     O = canvas(x4, (3, 3))
     return O
+
+def solve_f3cdc58f():
+    input_file = '../data/evaluation/f3cdc58f.json'
+    with open(input_file, 'r') as f:
+        data=json.load(f)
+    test_inputs = [item['input'] for item in data.get('test')][0]
+    dt = tuple(map(tuple, test_inputs))
+    x1 = numcolors(dt)
+    x2 = palette(dt)
+    x3 = objects(dt, T, F, T)
+    x4 = lbind(colorfilter, x3)
+    x5 = apply(x4, x2)
+    x6 = apply(merge, x5)
+    x7 = canvas(0, shape(dt))
+    for item in x6:
+        x8 = size(item)
+        if (x8 == 0): continue
+        x9 = first(item)[0]
+        x10 = height(dt)
+        x11 = subtract(x10, x8)
+        x12 = shoot((x11, x9 - 1), DOWN)
+        x7 = fill(x7, x9, x12)
+    ans = [list(item) for item in x7]
+    with open('output.txt','w') as f:
+        f.write(str(dt))
+        f.write('\n')
+        f.write(str(ans))
+solve_f3cdc58f()
+
+
