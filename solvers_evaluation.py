@@ -602,7 +602,7 @@ def solve_f3cdc58f():
     x4 = lbind(colorfilter, x3)
     x5 = apply(x4, x2)
     x6 = apply(merge, x5)
-    x7 = canvas(0, shape(dt))
+    O = canvas(0, shape(dt))
     for item in x6:
         x8 = size(item)
         if (x8 == 0): continue
@@ -611,11 +611,7 @@ def solve_f3cdc58f():
         x11 = subtract(x10, x8)
         x12 = shoot((x11, x9 - 1), DOWN)
         x7 = fill(x7, x9, x12)
-    ans = [list(item) for item in x7]
-    with open('output.txt','w') as f:
-        f.write(str(dt))
-        f.write('\n')
-        f.write(str(ans))
-solve_f3cdc58f()
+    return O
+
 
 
