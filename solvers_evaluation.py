@@ -521,3 +521,39 @@ def solve_551d5bf1():
 #         f.write(f"x2:{x2}\n")
 #         f.write(f"x8:{x8}\n")
 
+
+def solve_0e671a1a():
+    input_file = '../data/evaluation/0e671a1a.json'
+    with open(input_file, 'r') as f:
+        data=json.load(f)
+    test_inputs = [item['input'] for item in data.get('test')][0]
+    dt = tuple(map(tuple, test_inputs))
+    x1 = ofcolor(dt, 2)
+    x2 = ofcolor(dt, 3)
+    x3 = ofcolor(dt, 4)
+    x4 = first(x1)
+    x5 = first(x2)
+    x6 = first(x3)
+    x7 = astuple(first(x4), last(x6))
+    x8 = astuple(first(x6), last(x5))
+    x9 = connect(x7, x4)
+    x10 = connect(x7, x6)
+    x11 = combine(x9, x10)
+    x12 = connect(x8, x6)
+    x13 = connect(x8, x5)
+    x14 = combine(x12, x13)
+    x15 = underfill(dt, 5 ,x11)
+    O = underfill(x15, 5, x14)
+    with open("result.txt","w") as f:
+        f.write(f"x4:{x4}\n")
+        f.write(f"x6:{x6}\n")
+        f.write(f"x7:{x7}\n")
+        f.write(f"x8:{x8}\n")
+        f.write(f"x9:{x9}\n")
+        f.write(f"x10:{x10}\n")
+    ans = [list(item) for item in O]
+    with open('output.txt','w') as f:
+        f.write(str(dt))
+        f.write('\n')
+        f.write(str(ans))
+solve_0e671a1a()
