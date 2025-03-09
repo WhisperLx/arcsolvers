@@ -614,4 +614,20 @@ def solve_f3cdc58f():
     return O
 
 
-
+def solve_0a2355a6():
+    #wrong answer
+    input_file = '../data/evaluation/0a2355a6.json'
+    with open(input_file, 'r') as f:
+        data=json.load(f)
+    test_inputs = [item['input'] for item in data.get('test')][0]
+    dt = tuple(map(tuple, test_inputs))   
+    x1 = objects(dt, T, F, T)
+    x2 = rbind(subgrid, dt)
+    x3 = apply(x2, x1)
+    x4 = rbind(bordering, dt)
+    x5 = compose(flip, x4)
+    ans = [list(item) for item in x3]
+    with open('output.txt','w') as f:
+        f.write(str(dt))
+        f.write('\n')
+        f.write(str(ans))
